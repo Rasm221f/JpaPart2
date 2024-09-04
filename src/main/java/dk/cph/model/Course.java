@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -25,6 +27,12 @@ public class Course {
 
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Teacher teacher;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
 
 }
 
